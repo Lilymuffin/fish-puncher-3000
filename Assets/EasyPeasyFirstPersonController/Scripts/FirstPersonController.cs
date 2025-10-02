@@ -3,9 +3,11 @@ namespace EasyPeasyFirstPersonController
     using System;
     using System.Collections;
     using UnityEngine;
+    using TMPro;
 
     public partial class FirstPersonController : MonoBehaviour
     {
+        public GameObject winTextObject;
         [Range(0, 100)] public float mouseSensitivity = 50f;
         [Range(0f, 200f)] private float snappiness = 100f;
         [Range(0f, 20f)] public float walkSpeed = 3f;
@@ -284,6 +286,17 @@ namespace EasyPeasyFirstPersonController
         {
             Cursor.lockState = newVisibility ? CursorLockMode.None : CursorLockMode.Locked;
             Cursor.visible = newVisibility;
+        }
+        private void OnCollisionEnter(Collision collision)
+        {
+            if (collision.gameObject.CompareTag("Enemy"))
+            {
+                // Destroy the current object
+                Destroy(gameObject);
+                // Update the winText to display "You Lose!"
+                winTextObject.gameObject.SetActive(true);
+                winTextObject.GetComponent<TextMeshProUGUI>().text = "You Lose!";
+            }
         }
     }
 }
