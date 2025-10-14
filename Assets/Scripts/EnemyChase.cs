@@ -13,9 +13,10 @@ public class EnemyChase : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Vector3 playerPos = player.position;
         if (player != null)
         {
-            navMeshAgent.SetDestination(player.position);
+            navMeshAgent.SetDestination(playerPos);
         }
     }
 }
