@@ -70,6 +70,7 @@ namespace EasyPeasyFirstPersonController
         private float slideSpeedVelocity;
         private float currentTiltAngle;
         private float tiltVelocity;
+        public Player_Hit player_Hit;
 
         public float CurrentCameraHeight => isCrouching || isSliding ? crouchCameraHeight : originalCameraParentHeight;
 
@@ -98,6 +99,10 @@ namespace EasyPeasyFirstPersonController
 
         private void Update()
         {
+            if (Input.GetButtonDown("Punch"))
+            {
+                player_Hit.Attack();
+            }
             isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask, groundCheckQueryTriggerInteraction);
             if (isGrounded && moveDirection.y < 0)
             {

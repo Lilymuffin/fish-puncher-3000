@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
+using System.Collections;
 public class PlayerController : MonoBehaviour
 {
     public float speed = 0;
@@ -10,6 +11,7 @@ public class PlayerController : MonoBehaviour
     private int count;
     private float movementX;
     private float movementY;
+    public Player_Hit player_Hit;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -17,6 +19,14 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         SetCountText();
         winTextObject.SetActive(false);
+    }
+    private void Update()
+    {
+        if (Input.GetButtonDown("Punch"))
+        {
+            player_Hit.Attack();
+        }
+        
     }
     private void FixedUpdate()
     {
